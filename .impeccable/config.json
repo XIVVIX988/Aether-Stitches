@@ -1,0 +1,42 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-18T00:57:57.651Z",
+        "reason": "Agent: storefront wrappers already provide internal padding; detector reports the padded announcement, service row and divided lists as flush, so verified false positive for this page"
+      },
+      {
+        "rule": "wide-tracking",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-18T00:57:57.774Z",
+        "reason": "Agent: remaining tracked text is short uppercase service and market labels; ordinary body copy uses default tracking"
+      },
+      {
+        "rule": "overused-font",
+        "value": "arial",
+        "createdAt": "2026-11-18T00:57:57.857Z",
+        "reason": "Agent: Arial is the readable body-text face only; display headings use Georgia"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-18T00:58:04.986Z",
+        "reason": "User confirmed off-white as a core brand color, paired with black and logo gold"
+      }
+    ]
+  }
+}
