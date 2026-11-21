@@ -1,0 +1,21 @@
+feature,area,priority,original,clone,notes
+Homepage with distinct featured products and service links,discovery,must,yes,no,Use Aether copy and real product imagery when provided
+Category and material collection browsing,catalog,must,yes,no,Use Aether's approved bag categories and material filters
+Product detail with gallery and clear price,catalog,must,yes,no,Use Aether product data and local currencies
+Product option selection,catalog,must,yes,no,Options must come from Aether's actual catalogue
+Availability-specific purchase/enquiry states,catalog,must,yes,no,Out of stock disables purchase; made to order routes to enquiry; coming soon has no checkout
+Product specifications for dimensions and materials,catalog,must,yes,no,Only publish verified product attributes
+Cart for ready-made products,checkout,must,yes,no,Separate from custom quotation flow
+Kenya M-Pesa checkout,payments,must,yes,no,Integration remains a later implementation stage
+Regional freight quote for Uganda and Tanzania,shipping,must,yes,no,Manual quote as approved; display before payment
+Local-currency market selection,localization,must,yes,no,KSh primary; UGX and TSh options
+Custom order enquiry and quotation,custom orders,must,yes,no,Quote and deposit before production starts
+Deposit and balance tracking,custom orders,must,yes,no,Admin capability in later phase
+Admin updates for price and stock,admin,must,yes,no,Must not require code edits
+Product search,catalog,should,yes,no,Add if catalogue size warrants it
+Wishlist or saved products,discovery,could,yes,no,Not required for initial prototype
+Business/corporate bulk order intake,custom orders,could,yes,no,Aether's collaboration page is confirmed; a separate corporate flow needs confirmation
+"Sandstorm's exact brand, copy, imagery or product designs",rights,skip,yes,no,Not Aether-owned material; clean-room implementation only
+Sandstorm-specific shipping and guarantee terms,policies,skip,yes,no,Aether has separate confirmed policies and market rules
+Sandstorm's customer/order data or private integrations,data,skip,yes,no,Unavailable and out of scope
+Sandstorm's exact storefront source or private APIs,implementation,skip,yes,no,Use public pages only; no source or endpoint copying

@@ -7,11 +7,12 @@
   const categoryButtons = [...document.querySelectorAll(".category-option")];
   const catalogMessage = document.querySelector("#catalog-message");
   const catalogState = document.querySelector("#catalog-state");
+  let selectedMarket = marketSelect.value;
 
   const marketCopy = {
     KE: {
-      en: "Kenya orders: complimentary delivery · M-Pesa available · KSh prices",
-      sw: "Oda za Kenya: usafirishaji bila malipo · M-Pesa inapatikana · Bei kwa KSh",
+      en: "Kenya orders: complimentary delivery · M-Pesa payments are not connected yet · KSh prices",
+      sw: "Oda za Kenya: usafirishaji bila malipo · Malipo ya M-Pesa bado hayajaunganishwa · Bei kwa KSh",
     },
     UG: {
       en: "Uganda orders: freight quoted manually · payment option to be confirmed · UGX prices",
@@ -43,6 +44,12 @@
     document.querySelectorAll("[data-en][data-sw]").forEach((element) => {
       element.innerHTML = element.dataset[language];
     });
+    document.querySelectorAll("[data-aria-en][data-aria-sw]").forEach((element) => {
+      element.setAttribute("aria-label", element.dataset[`aria${capitalize(language)}`]);
+    });
+    document.title = document.querySelector("title").dataset[language];
+    const description = document.querySelector('meta[name="description"]');
+    description.setAttribute("content", description.dataset[`content${capitalize(language)}`]);
     languageToggle.textContent = language === "en" ? "SW" : "EN";
     languageToggle.setAttribute("aria-pressed", String(language === "sw"));
     languageToggle.setAttribute(
@@ -60,9 +67,8 @@
   }
 
   function updateMarketMessage() {
-    const market = marketSelect.value;
-    marketMessage.textContent = marketCopy[market][language];
-    marketMessage.dataset.market = market;
+    marketMessage.textContent = marketCopy[selectedMarket][language];
+    marketMessage.dataset.market = selectedMarket;
   }
 
   function updateCatalogMessage(category) {
@@ -89,7 +95,12 @@
   }
 
   marketSelect.addEventListener("change", () => {
-    localStorage.setItem("aether-market", marketSelect.value);
+    selectedMarket = marketSelect.value;
+    try {
+      localStorage.setItem("aether-market", selectedMarket);
+    } catch {
+      // Keep the selected market in page state when browser storage is unavailable.
+    }
     updateMarketMessage();
   });
 
@@ -126,8 +137,16 @@
     });
   });
 
-  const savedMarket = localStorage.getItem("aether-market");
-  if (savedMarket && marketCopy[savedMarket]) marketSelect.value = savedMarket;
+  let savedMarket = null;
+  try {
+    savedMarket = localStorage.getItem("aether-market");
+  } catch {
+    // Market selection remains usable for this page session without persistence.
+  }
+  if (savedMarket && marketCopy[savedMarket]) {
+    selectedMarket = savedMarket;
+    marketSelect.value = savedMarket;
+  }
   document.querySelector("#year").textContent = new Date().getFullYear();
   updateMarketMessage();
 })();
